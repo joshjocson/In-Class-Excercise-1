@@ -53,6 +53,9 @@ public class CardTrick {
         if(count == 7){
             System.out.println("Your card was not part of the hand");
         }
+    Card luckyCard = new Card();
+    luckyCard.setNumbers(7);
+    luckyCard.setSuit("Spades");
     }
 }
 
