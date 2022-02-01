@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cardtrick;
+
+import java.util.Scanner;
 
 /** step 1: generate 7 random cards and store in array 
  * 52 deck size: 
@@ -11,8 +8,9 @@ package cardtrick;
  * 5 hearts
  * 1 clubs
  * ... 7 cards
- *
- * @author sivagamasrinivasan
+ * 
+ * Student ID: 991657009
+ * @author Josh Jocson
  */
 public class CardTrick {
 
@@ -24,18 +22,37 @@ public class CardTrick {
         
         
       Card[] magicHand = new Card[7]; //Array of object 
+      System.out.println("The Hand was: ");      
       for (int i=0;i<magicHand.length;i++)
       {
         // step 1: generate 7 random cards and store in array
           Card c= new Card();
-          c.setNumbers(2);//random generation for number/use method
-          c.setSuit("suit by random suit generation");
-          magicHand[i]=c; // stores the card object  in array
-        
+          c.setNumbers((int)((Math.random() * 12) + 1));//random generation for number/use method
+          c.setSuit(c.SUITS[(int)((Math.random() * 3))]);
+          System.out.println(c.getNumbers() + " of " + c.getSuit());
+          magicHand[i] = c; // stores the card object  in array   
     }
       //step 2: take input guess the card 2 spades find in array - print your card is found
-    
-    // step 3 do change in remote repository. hard coded card details card number =2,hearts to find in array
+        System.out.println("");
+        Scanner keyboard = new Scanner(System.in);
+        int count = 0;
+        boolean match = false;
+        System.out.print("Please enter a number between 1 to 13: "); 
+        int userInputNum = keyboard.nextInt();
+        System.out.print("Please enter a suit: ");
+        String userInputSuit = keyboard.next();
+        
+        do{
+            if(userInputNum == magicHand[count].getNumbers() && userInputSuit.equals(magicHand[count].getSuit())){
+                System.out.println("Your card was generated");
+                match = true;
+            } else {
+                count++;
+            }
+        }while (match == false && count < 7);
+        if(count == 7){
+            System.out.println("Your card was not part of the hand");
+        }
     }
-    
 }
+
